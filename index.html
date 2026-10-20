@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I LOVE GAMBLE</title>
+<style>
+  :root { --space:#0c1127; --ink:#e9ecf5; --muted:#a3abc4; --line:#cfd6ea; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--space); color:var(--ink);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+  main { max-width:1000px; margin:0 auto; padding:28px 16px 40px; }
+  h1 { font-family: Georgia, "Iowan Old Style", serif; font-weight:400; font-size:1.7rem; margin:0 0 4px; }
+  p.sub { margin:0 0 18px; color:var(--muted); max-width:64ch; }
+  svg { width:100%; height:auto; display:block; border-radius:10px; background:#080c1d; }
+  svg text { fill:var(--ink); font-size:17px; font-family:inherit; }
+  svg .small { font-size:14px; fill:var(--muted); }
+  svg .leader { stroke:var(--line); stroke-width:1; stroke-dasharray:3 3; fill:none; }
+  dl { display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:20px 0 0; max-width:70ch; }
+  dt { font-weight:600; } dd { margin:0; color:var(--muted); }
+  .note { margin-top:14px; font-size:.9rem; color:var(--muted); }
+
+  /* The fading in thingy */
+  @keyframes rise {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .rise { opacity:0; animation: rise .8s cubic-bezier(.2,.7,.2,1) var(--d,0s) both; }
+  @media (prefers-reduced-motion: reduce) { .rise { animation:none; opacity:1; } }
+
+  /* Scrollbar: a green gradient thumb that brightens on hover */
+  ::-webkit-scrollbar { width:16px; }
+  ::-webkit-scrollbar-track { background:#070a18; border-left:1px solid #12301f; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7dff9b 0%, #22c55e 45%, #0f8a3c 100%);
+    border:4px solid #070a18; border-radius:12px;
+    box-shadow: inset 0 0 6px rgba(200,255,215,.4);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #b6ffc8 0%, #4ade80 45%, #16a34a 100%); }
+  ::-webkit-scrollbar-thumb:active { border-width:3px; }
+  @supports not selector(::-webkit-scrollbar) { html { scrollbar-color:#22c55e #070a18; scrollbar-width:auto; } }
+</style>
+</head>
+<body>
+<main>
+  <h1 class="rise" style="--d:0s">Solar Eclipse Thingy</h1>
+  <p class="sub rise" style="--d:.1s">During a solar eclipse the moon passes between the sun and earth (because its a moon) and casts a TWO part shadow on earth's surface. </p>
+
+  <svg viewBox="0 0 960 500" role="img" aria-labelledby="t d">
+    <title id="t">uhhh move yo mouse man I HATE having show up each time you hover over me</title>
+    <desc id="d">The Sun on the left, the Moon in the middle and Earth on the right. The Moon casts a dark inner cone called the umbra and a lighter outer cone called the penumbra onto Earth.</desc>
+    <defs>
+      <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#fff3b0"/><stop offset="0.7" stop-color="#ffb52e"/><stop offset="1" stop-color="#f08a12"/>
+      </radialGradient>
+      <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0.55" stop-color="#ffb52e" stop-opacity=".35"/><stop offset="1" stop-color="#ffb52e" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="earthG" cx="35%" cy="35%" r="75%">
+        <stop offset="0" stop-color="#5a9be0"/><stop offset="1" stop-color="#1d4f8f"/>
+      </radialGradient>
+      <clipPath id="earthClip"><circle cx="800" cy="250" r="64"/></clipPath>
+    </defs>
+
+    <!-- stars -->
+    <g class="rise" style="--d:.15s" fill="#fff" opacity=".6">
+      <circle cx="210" cy="60" r="1.5"/><circle cx="380" cy="95" r="1"/><circle cx="560" cy="48" r="1.5"/>
+      <circle cx="700" cy="85" r="1"/><circle cx="905" cy="55" r="1.5"/><circle cx="260" cy="455" r="1.5"/>
+      <circle cx="450" cy="430" r="1"/><circle cx="900" cy="440" r="1"/><circle cx="130" cy="120" r="1"/>
+    </g>
+
+    <!-- sunlight between Sun and Earth -->
+    <g class="rise" style="--d:.25s">
+      <polygon points="80,190 960,150 960,350 80,310" fill="#ffc864" opacity=".11"/>
+    </g>
+
+    <!-- Sun -->
+    <g class="rise" style="--d:.35s">
+      <circle cx="80" cy="250" r="95" fill="url(#glow)"/>
+      <circle cx="80" cy="250" r="60" fill="url(#sunG)"/>
+      <text x="80" y="340" text-anchor="middle">Sun</text>
+    </g>
+
+    <!-- penumbra -->
+    <g class="rise" style="--d:.5s">
+      <polygon points="520,228 960,146 960,354 520,272" fill="#05081a" opacity=".55"
+               stroke="#9aa6d6" stroke-width="1" stroke-dasharray="6 4"/>
+    </g>
+    <!-- umbra -->
+    <g class="rise" style="--d:.65s">
+      <polygon points="520,228 775,250 520,272" fill="#000" stroke="#e9ecf5" stroke-width="1"/>
+    </g>
+
+    <g class="rise" style="--d:.8s">
+      <circle cx="800" cy="250" r="64" fill="url(#earthG)"/>
+      <g clip-path="url(#earthClip)">
+        <polygon points="520,228 960,146 960,354 520,272" fill="#05081a" opacity=".6"/>
+        <polygon points="520,228 775,250 520,272" fill="#000"/>
+      </g>
+      <circle cx="800" cy="250" r="64" fill="none" stroke="#7fb0ec" stroke-width="1.5"/>
+      <text x="800" y="375" text-anchor="middle">Earth</text>
+      <line class="leader" x1="800" y1="316" x2="800" y2="360"/>
+    </g>
+
+    <!-- Moon -->
+    <g class="rise" style="--d:.95s">
+      <circle cx="520" cy="250" r="22" fill="#8d93a1" stroke="#c5c9d4" stroke-width="1"/>
+      <circle cx="512" cy="244" r="4" fill="#767c8a"/><circle cx="528" cy="256" r="5" fill="#767c8a"/>
+      <text x="520" y="196" text-anchor="middle">Moon</text>
+      <text x="520" y="214" text-anchor="middle" class="small">(Pretend this is the "new moon" phase)</text>
+    </g>
+
+    <!-- labels -->
+    <g class="rise" style="--d:1.1s">
+      <text x="650" y="104" text-anchor="middle">Penumbra</text>
+      <text x="650" y="122" text-anchor="middle" class="small">partial shadow</text>
+      <line class="leader" x1="650" y1="128" x2="650" y2="224"/>
+    </g>
+    <g class="rise" style="--d:1.25s">
+      <text x="600" y="395" text-anchor="middle">Umbra</text>
+      <text x="600" y="413" text-anchor="middle" class="small">full shadow</text>
+      <line class="leader" x1="600" y1="250" x2="600" y2="380"/>
+    </g>
+    <g class="rise" style="--d:1.4s">
+      <text x="720" y="462" text-anchor="end">Total eclipse zone</text>
+      <text x="720" y="480" text-anchor="end" class="small">No more sun</text>
+      <line class="leader" x1="726" y1="456" x2="738" y2="254"/>
+    </g>
+    <g class="rise" style="--d:1.55s">
+      <text x="900" y="104" text-anchor="end">Partial eclipse zone</text>
+      <text x="900" y="122" text-anchor="end" class="small">Partly covered sun</text>
+      <line class="leader" x1="840" y1="128" x2="772" y2="197"/>
+    </g>
+  </svg>
+
+  <dl class="rise" style="--d:1.7s">
+    <dt>Umbra</dt><dd>The "dark" inner cone where the moon blocks all direct sunlight, meaning anybody who see inside it sees a total eclipse.</dd>
+    <dt>Penumbra</dt><dd>The "lighter" outer cone where the moon blocks only part of the sun. People who look inside it see a partial eclipse.</dd>
+  </dl>
+  <p class="note rise" style="--d:1.85s">Note: I know this might be something stupid to say but the sun is about 400 times wider than the moon in real life, meaning the umbra reaches earth as a spot only about 100 through 270 km across.</p>
+</main>
+</body>
+</html>
